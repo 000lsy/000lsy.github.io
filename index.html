@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💗</title>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    overflow:hidden;
+    background:black;
+}
+
+.video-background{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1;
+}
+
+#happy-birthday{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:42px;
+    color:#ff69b4;
+    font-weight:bold;
+    text-shadow:0 0 10px #ff99cc,0 0 25px #ff3399;
+    animation: glow 1.5s infinite alternate;
+    text-align:center;
+}
+
+@keyframes glow{
+    from{opacity:0.7}
+    to{opacity:1}
+}
+</style>
+
+</head>
+
+<body>
+
+<video id="bgVideo" class="video-background" muted loop playsinline></video>
+
+<audio id="music" loop>
+<source src="http://music.163.com/song/media/outer/url?id=2704995395.mp3">
+</audio>
+
+<div id="happy-birthday">🎉 小薯条生日快乐 🎂</div>
+
+<script>
+const video = document.getElementById("bgVideo");
+
+// ⭐ 改这里：去掉 video/ 文件夹
+video.src = "hudie.mp4";
+video.load();
+
+window.addEventListener("load",()=>{
+    video.play().catch(()=>{});
+});
+
+document.body.addEventListener("click",()=>{
+    video.play().catch(()=>{});
+    document.getElementById("music").play().catch(()=>{});
+});
+</script>
+
+</body>
+</html>
