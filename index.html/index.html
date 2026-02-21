@@ -15,20 +15,16 @@ html,body{
     background:black;
 }
 
-/* 背景视频 */
 .video-background{
     position:fixed;
-    right:0;
-    bottom:0;
-    min-width:100%;
-    min-height:100%;
-    width:auto;
-    height:auto;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     object-fit:cover;
     z-index:-1;
 }
 
-/* 文字 */
 #happy-birthday{
     position:fixed;
     top:50%;
@@ -52,29 +48,30 @@ html,body{
 
 <body>
 
-<!-- 背景视频 -->
+<video id="bgVideo" class="video-background" muted loop playsinline></video>
 
-<video id="bgVideo" class="video-background" autoplay muted loop playsinline webkit-playsinline preload="auto">
-    <source src="video/hudie.mp4" type="video/mp4">
-</video>
-
-<!-- 音乐 -->
-
-<audio id="music" loop preload="auto">
+<audio id="music" loop>
 <source src="http://music.163.com/song/media/outer/url?id=2704995395.mp3">
 </audio>
 
 <div id="happy-birthday">🎉 小薯条生日快乐 🎂</div>
 
 <script>
-// 强制尝试播放视频（解决 GitHub Pages + Chrome 自动播放限制）
 const video = document.getElementById("bgVideo");
-video.play().catch(()=>{});
 
-// 点击页面后播放音乐 + 确保视频开始
-document.body.addEventListener('click',()=>{
-    document.getElementById('music').play().catch(()=>{});
+// 动态加载视频（避免自动播放拦截）
+video.src = "video/hudie.mp4";
+video.load();
+
+// 页面加载完成后尝试播放
+window.addEventListener("load",()=>{
     video.play().catch(()=>{});
+});
+
+// 点击页面时确保播放 + 播放音乐
+document.body.addEventListener("click",()=>{
+    video.play().catch(()=>{});
+    document.getElementById("music").play().catch(()=>{});
 });
 </script>
 
