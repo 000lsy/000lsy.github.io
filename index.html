@@ -65,11 +65,11 @@ video.src = "hudie.mp4";
 video.load();
 
 // 尝试自动播放（静音视频可自动播）
-video.play().catch(()=>{});
+video.play().catch(() => {});
 
 // 用户点击后开启音乐
-document.body.addEventListener("click",()=>{
-    music.play().catch(()=>{});
+document.body.addEventListener("click", () => {
+    music.play().catch(() => {});
 });
 </script>
 
