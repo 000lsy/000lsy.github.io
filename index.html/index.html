@@ -59,16 +59,14 @@ html,body{
 <script>
 const video = document.getElementById("bgVideo");
 
-// 动态加载视频（避免自动播放拦截）
-video.src = "video/hudie.mp4";
+// ⭐ 改这里：去掉 video/ 文件夹
+video.src = "hudie.mp4";
 video.load();
 
-// 页面加载完成后尝试播放
 window.addEventListener("load",()=>{
     video.play().catch(()=>{});
 });
 
-// 点击页面时确保播放 + 播放音乐
 document.body.addEventListener("click",()=>{
     video.play().catch(()=>{});
     document.getElementById("music").play().catch(()=>{});
