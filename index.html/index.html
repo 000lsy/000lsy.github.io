@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -11,6 +12,7 @@ html,body{
     padding:0;
     height:100%;
     overflow:hidden;
+    background:black;
 }
 
 /* 背景视频 */
@@ -20,6 +22,8 @@ html,body{
     bottom:0;
     min-width:100%;
     min-height:100%;
+    width:auto;
+    height:auto;
     object-fit:cover;
     z-index:-1;
 }
@@ -35,6 +39,7 @@ html,body{
     font-weight:bold;
     text-shadow:0 0 10px #ff99cc,0 0 25px #ff3399;
     animation: glow 1.5s infinite alternate;
+    text-align:center;
 }
 
 @keyframes glow{
@@ -42,25 +47,34 @@ html,body{
     to{opacity:1}
 }
 </style>
+
 </head>
 
 <body>
 
 <!-- 背景视频 -->
-<video class="video-background" autoplay muted loop playsinline>
+
+<video id="bgVideo" class="video-background" autoplay muted loop playsinline webkit-playsinline preload="auto">
     <source src="video/hudie.mp4" type="video/mp4">
 </video>
 
 <!-- 音乐 -->
-<audio id="music" loop>
+
+<audio id="music" loop preload="auto">
 <source src="http://music.163.com/song/media/outer/url?id=2704995395.mp3">
 </audio>
 
 <div id="happy-birthday">🎉 小薯条生日快乐 🎂</div>
 
 <script>
+// 强制尝试播放视频（解决 GitHub Pages + Chrome 自动播放限制）
+const video = document.getElementById("bgVideo");
+video.play().catch(()=>{});
+
+// 点击页面后播放音乐 + 确保视频开始
 document.body.addEventListener('click',()=>{
-    document.getElementById('music').play();
+    document.getElementById('music').play().catch(()=>{});
+    video.play().catch(()=>{});
 });
 </script>
 
