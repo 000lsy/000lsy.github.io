@@ -1,1 +1,68 @@
-tmp
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💗</title>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    overflow:hidden;
+}
+
+/* 背景视频 */
+.video-background{
+    position:fixed;
+    right:0;
+    bottom:0;
+    min-width:100%;
+    min-height:100%;
+    object-fit:cover;
+    z-index:-1;
+}
+
+/* 文字 */
+#happy-birthday{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:42px;
+    color:#ff69b4;
+    font-weight:bold;
+    text-shadow:0 0 10px #ff99cc,0 0 25px #ff3399;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{opacity:0.7}
+    to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 背景视频 -->
+<video class="video-background" autoplay muted loop playsinline>
+    <source src="video/hudie.mp4" type="video/mp4">
+</video>
+
+<!-- 音乐 -->
+<audio id="music" loop>
+<source src="http://music.163.com/song/media/outer/url?id=2704995395.mp3">
+</audio>
+
+<div id="happy-birthday">🎉 小薯条生日快乐 🎂</div>
+
+<script>
+document.body.addEventListener('click',()=>{
+    document.getElementById('music').play();
+});
+</script>
+
+</body>
+</html>
